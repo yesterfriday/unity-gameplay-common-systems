@@ -34,3 +34,6 @@ sysinfo.txt
 # =========================
 TestResults/
 Coverage/
+
+# Imported UPM samples (generated under Assets)
+Assets/Samples/

@@ -1,0 +1,18 @@
+{
+  "name": "com.yesterfriday.gameplay-common-systems",
+  "version": "0.0.1",
+  "displayName": "Gameplay Common Systems",
+  "description": "Reusable Unity gameplay systems (Inventory, Cards, Spawner, Slingshot) with samples and documentation. No external assets.",
+  "unity": "2022.3",
+  "author": {
+    "name": "yesterfriday",
+    "url": "https://github.com/yesterfriday"
+  },
+  "samples": [
+    {
+      "displayName": "Sample Hub",
+      "description": "Entry point sample scenes for Gameplay Common Systems.",
+      "path": "Samples~/SampleHub"
+    }
+  ]
+}
