@@ -1,0 +1,36 @@
+# =========================
+# Unity generated folders
+# =========================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# =========================
+# OS / IDE
+# =========================
+.vs/
+.idea/
+*.user
+*.userprefs
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.log
+
+# =========================
+# Unity / Visual Studio cache
+# =========================
+ExportedObj/
+MemoryCaptures/
+sysinfo.txt
+
+# =========================
+# Test / Coverage
+# =========================
+TestResults/
+Coverage/
