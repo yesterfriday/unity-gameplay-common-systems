@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemDefinition", menuName = "Common Systems/Inventory/Item Definition", order = 1)]
 public class ItemDefinition : ScriptableObject
 {
-    [SerializeField] private string Id;
+    public string Id;
     [SerializeField] private string DisplayName;
-    [SerializeField] [Min(1)] private int MaxStack = 9;
+    [Min(1)] public int MaxStack = 9;
 
 #if UnityEditor
     private void OnValidate()
