@@ -13,6 +13,11 @@
       "displayName": "Sample Hub",
       "description": "Entry point sample scenes for Gameplay Common Systems.",
       "path": "Samples~/SampleHub"
+    },
+    {
+      "displayName": "Inventory Demo",
+      "description": "Demo scene showcasing Inventory v0.1 (Add/Remove/Move, changedIndices).",
+      "path": "Samples~/Inventory_Demo"
     }
   ]
 }
