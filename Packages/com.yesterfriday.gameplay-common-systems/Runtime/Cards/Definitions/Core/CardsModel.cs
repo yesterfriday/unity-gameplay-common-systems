@@ -122,6 +122,30 @@ namespace Yesterfriday.GameplayCommonSystems.Cards
             return true;
         }
 
+        public bool TryDiscard(int handIndex)
+        {
+            if ((uint)handIndex >= (uint)_hand.Count)
+            {
+                return false;
+            }
+            
+            var card = _hand[handIndex];
+            if (card == null)
+            {
+                return false;
+            }
+            
+            _hand.RemoveAt(handIndex);
+            _discard.Add(card);
+            
+            OnCardsChanged?.Invoke();
+            return true;
+        }
+        
+        public bool TryPlay(int handIndex)
+        {
+            return TryDiscard(handIndex);
+        }
     }
 
 }

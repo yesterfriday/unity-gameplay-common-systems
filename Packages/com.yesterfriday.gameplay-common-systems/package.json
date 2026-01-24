@@ -18,6 +18,11 @@
       "displayName": "Inventory Demo",
       "description": "Demo scene showcasing Inventory v0.1 (Add/Remove/Move, changedIndices).",
       "path": "Samples~/Inventory_Demo"
+    },
+    {
+      "displayName": "Cards Demo",
+      "description": "Demo scene to validate Cards v0.1 (Reset/Peek/Shuffle/Draw/Discard/Play).",
+      "path": "Samples~/Cards_Demo"
     }
   ]
 }
