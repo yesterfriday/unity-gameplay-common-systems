@@ -1,12 +1,9 @@
-# README-Monster Spawner (v0.1)
+# README — Monster Spawner (v0.1)
 
-> 요약
-> 
-> 
-> 이 시스템은 Unity 프로젝트에서 **몬스터(프리팹)를 규칙에 따라 생성/관리**할 수 있는 **재사용 가능한 스포너 모듈**입니다.
-> 
-> v0.1에서는 **스폰 포인트 기반 생성**, **최대 동시 개체 수 제한**, **스폰 쿨다운**, **스폰/디스폰 이벤트 제공**까지를 핵심 범위로 하며, 이후 v0.2에서 **웨이브/가중치 테이블/오브젝트 풀링/네트워크 대응** 등으로 확장할 수 있도록 설계합니다.
-> 
+## 요약
+
+이 시스템은 Unity 프로젝트에서 **몬스터(프리팹)를 규칙에 따라 생성/관리**할 수 있는 **재사용 가능한 스포너 모듈**입니다.
+v0.1에서는 **스폰 포인트 기반 생성**, **최대 동시 개체 수 제한**, **스폰 쿨다운**, **스폰/디스폰 이벤트 제공**까지를 핵심 범위로 하며, 이후 v0.2에서 **웨이브/가중치 테이블/오브젝트 풀링/네트워크 대응** 등으로 확장할 수 있도록 설계합니다.
 
 ---
 
@@ -40,8 +37,8 @@
 - `Id: string` (고유 식별자)
 - `DisplayName: string` (표시명)
 - `Prefab: GameObject` (스폰 프리팹)
-- (선택) `MaxAliveOverride: int?` (개별 몬스터 타입별 제한)
-- (선택) `SpawnCost / Tags` 등은 v0.2+
+- `MaxAliveOverride: int` (개별 몬스터 타입별 제한)
+- `SpawnCost / Tags` 등은 v0.2+
 
 ### Spawn Points
 
@@ -64,7 +61,7 @@
 
 ### Spawn
 
-- 입력: `MonsterDefinition` + (선택) spawn point index
+- 입력: `MonsterDefinition` + spawn point index
 - 생성 규칙:
     - `AliveCount >= MaxAlive`이면 Spawn 실패
     - 쿨다운 중이면 Spawn 실패
