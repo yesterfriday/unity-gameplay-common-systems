@@ -23,6 +23,11 @@
       "displayName": "Cards Demo",
       "description": "Demo scene to validate Cards v0.1 (Reset/Peek/Shuffle/Draw/Discard/Play).",
       "path": "Samples~/Cards_Demo"
+    },
+    {
+      "displayName": "MonsterSpawn Demo",
+      "description": "Demo scene to validate MonsterSpawn v0.1 (Reset/Peek/Shuffle/Draw/Discard/Play).",
+      "path": "Samples~/MonsterSpawn_Demo"
     }
   ]
 }
