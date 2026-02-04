@@ -7,10 +7,10 @@ namespace Yesterfriday.GameplayCommonSystems.Cards
     public sealed class CardDefinition : ScriptableObject
     {
         [SerializeField] private string _id;
-        [SerializeField] private string displayName;
+        [SerializeField] private string _displayName;
 
         public string Id => _id;
-        public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? name : displayName;
+        public string DisplayName => string.IsNullOrWhiteSpace(_displayName) ? name : _displayName;
             
 #if UNITY_EDITOR
         private void OnValidate()
