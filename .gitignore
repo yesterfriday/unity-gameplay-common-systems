@@ -37,4 +37,7 @@ TestResults/
 Coverage/
 
 # Imported UPM samples (generated under Assets)
-Assets/Samples/
+Assets/Samples/Assets/TextMesh Pro/
+Assets/TextMesh Pro.meta
+Assets/Tests/
+Assets/Tests.meta
