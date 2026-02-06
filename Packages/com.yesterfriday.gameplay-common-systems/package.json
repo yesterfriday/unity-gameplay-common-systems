@@ -11,7 +11,7 @@
   "samples": [
     {
       "displayName": "Sample Hub",
-      "description": "Entry point sample scenes for Gameplay Common Systems.",
+      "description": "Central hub scene linking to each module demo (quick navigation + validation checklist).",
       "path": "Samples~/SampleHub"
     },
     {
@@ -26,8 +26,13 @@
     },
     {
       "displayName": "MonsterSpawn Demo",
-      "description": "Demo scene to validate MonsterSpawn v0.1 (Reset/Peek/Shuffle/Draw/Discard/Play).",
+      "description": "Demo scene to validate MonsterSpawner v0.1 (Spawn points, selection policy, MaxAlive, Cooldown).",
       "path": "Samples~/MonsterSpawn_Demo"
+    },
+    {
+      "displayName": "Slingshot2D Demo",
+      "description": "Demo scene to validate Slingshot2D v0.1 (Begin/Update/End pull, Launch, FailReason, trajectory preview).",
+      "path": "Samples~/Slingshot2D_Demo"
     }
   ]
 }
