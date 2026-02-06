@@ -111,6 +111,23 @@ Slingshot(v0.1)은 **2D 탑뷰(Top-Down)**에서 마우스/터치 드래그를 *
     - 입력 시스템과 분리해 “계산된 pull로 발사만” 수행하고 싶을 때
 - `bool IsCoolingDown { get; }`
 
+## FailReason Mapping (v0.1)
+
+| FailReason | 의미 | 대표 원인/대응 |
+|---|---|---|
+| None | 실패 없음 | 정상 상태 |
+| NullDefinition | Definition 미할당 | `SlingshotDefinition2D` 에셋을 Launcher에 연결 |
+| NullPrefab | ProjectilePrefab 미할당 | Definition의 `ProjectilePrefab` 지정 |
+| NullOrigin | Origin 미할당 | Launcher의 `Origin` Transform 연결 |
+| NullCamera | InputCamera 미할당 | `InputCamera` 연결 또는 MainCamera 태그 확인 |
+| CoolingDown | 쿨다운 중 | `Time.time < nextLaunchTime` / `CooldownSeconds` 확인 |
+| NoPlaneHit | Screen→World 교차 실패 | Ray-Plane 교차 실패(카메라/Origin.z/평행) |
+| NotPulling | Pull 세션이 없음 | Begin 없이 Update/End 호출 또는 Begin 실패 |
+| PullTooSmall | 당김이 너무 짧음 | `pull.magnitude < MinPullDistance` → MinPullDistance 조정 |
+| InvalidParams | 파라미터가 유효하지 않음 | `MaxPullDistance<=0`, `MaxImpulse<=0`, `MaxImpulse<MinImpulse` 등 |
+| NoRigidbody2D | 프리팹에 Rigidbody2D 없음 | ProjectilePrefab에 Rigidbody2D 추가(없으면 발사체 Destroy 권장) |
+| AlreadyPulling | 이미 Pull 중 | Pull 세션 중 Begin 재호출 방지 |
+
 ## Notes (Implementation Guidance)
 
 - **Ray-Plane 교차를 고정 규칙으로 추천하는 이유**
@@ -127,14 +144,40 @@ Slingshot(v0.1)은 **2D 탑뷰(Top-Down)**에서 마우스/터치 드래그를 *
     - impulse 매핑(Min/Max) 확인
     - Rigidbody2D 누락 시 실패 + 생성물 정리(Destroy)
 
-## Sample (Demo)
+## Sample (Slingshot2D_Demo)
+> Demo 권장: `MinImpulse < MaxImpulse` (예: 2~10), `MaxPullDistance=3~6`, `MinPullDistance=0.1~0.3`
 
-- `Slingshot_Demo` 씬에서 확인할 것
-    - 드래그로 당김(Pull) → 마우스/터치 릴리즈 시 발사체 발사
-    - Pull 길이에 따라 impulse가 달라짐(텍스트로 표시)
-    - 쿨다운 중 연속 발사 실패(실패 사유 텍스트/로그)
-- UI(TMP) 권장 표시
-    - `normalizedPull`, `impulse`, `cooldownRemaining`, `lastFailReason`
+### Import & Run (재현 방법)
+
+1. Package Manager에서 `com.yesterfriday.gameplay-common-systems` 추가
+2. Package Manager > Samples에서 **Slingshot2D Demo** Import
+3. 씬 열기: `Samples~/Slingshot2D_Demo/Scenes/Slingshot2D_Demo.unity`
+4. Play → 드래그(당김) → 마우스/터치 릴리즈로 발사 확인
+5. TMP UI에서 `normalizedPull / impulse / cooldown / lastFailReason` 값 변화 확인
+
+### Scene 구성(핵심 오브젝트)
+
+- **Launcher**
+  - `SlingshotLauncher2D` (Runtime)
+  - `Definition` : `SlingshotDefinition2D_Demo` 에셋
+  - `Origin` : 발사 기준점 Transform
+  - `InputCamera` : 보통 Main Camera
+- **InputBridge**
+  - `SlingshotDemoInputBridge2D` : Mouse/Touch → `TryBegin/Update/EndPull` 연결
+- **UI (TMP)**
+  - `SlingshotDemoUI` : 상태/FailReason/Impulse 표시
+- **Visualizer**
+  - `SlingshotDemoVisualizer2D`
+  - Pull Line(막대형 LineRenderer) + Trajectory Dots(예측 점) 표시  
+  - *AimLine은 사용하지 않음(궤적 점으로 방향/강도를 시각화)*
+
+### Demo에서 확인할 것
+
+- 드래그 길이에 따라 `normalizedPull`/`impulse`가 증가하는지
+- `CooldownSeconds` 동안 연속 발사가 막히는지(`CoolingDown`)
+- 드래그가 너무 짧으면 실패 처리되는지(`PullTooSmall`)
+- Prefab에 `Rigidbody2D`가 없으면 실패 처리되는지(`NoRigidbody2D`)
+- FailReason이 UI에 명확히 표시되는지(`LastFailReason`)
 
 ## Roadmap (v0.2+)
 
