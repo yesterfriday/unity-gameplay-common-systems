@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Yesterfriday.GameplayCommonSystems.Slingshot
 {
-    [CreateAssetMenu (fileName = "SlingshotDefinition2D", menuName = "CommonSystems/Slingshot/Slingshot Definition2D", order = 1)]
+    [CreateAssetMenu (fileName = "SlingshotDefinition2D", menuName = "Common Systems/Slingshot/Slingshot Definition2D", order = 1)]
     public sealed class SlingshotDefinition2D :  ScriptableObject
     {
         [Header("Identity")]
@@ -17,8 +17,8 @@ namespace Yesterfriday.GameplayCommonSystems.Slingshot
         [Min(0f)] [SerializeField] private float _maxPullDistance = 3f;
         [Min(0f)] [SerializeField] private float _minPullDistance = 0.1f;
         
-        [Min(0f)] [SerializeField] private float _maxImpulse = 1f;
-        [Min(0f)] [SerializeField] private float _minImpulse = 8f;
+        [Min(0f)] [SerializeField] private float _maxImpulse = 2f;
+        [Min(0f)] [SerializeField] private float _minImpulse = 10f;
         
         [Header("Cooldown")]
         [Min(0f)] [SerializeField] private float _cooldownSeconds = 0.25f;

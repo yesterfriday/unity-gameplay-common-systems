@@ -156,6 +156,7 @@ namespace Yesterfriday.GameplayCommonSystems.Slingshot
 
             if (!IsValidParams(_definition))
             {
+                Debug.Log($"[Slingshot] Params: MaxPullDistance={_definition.MaxPullDistance}, MinPullDistance={_definition.MinPullDistance}, MinImpulse={_definition.MinImpulse}, MaxImpulse={_definition.MaxImpulse}, Cooldown={_definition.CooldownSeconds}");
                 return Fail(SlingshotFailReason.InvalidParams);
             }
 
@@ -192,11 +193,23 @@ namespace Yesterfriday.GameplayCommonSystems.Slingshot
         
         private static bool IsValidParams(SlingshotDefinition2D def)
         {
-            // TODO(P-1): MaxPullDistance > 0?
-            // TODO(P-2): MinImpulse/MaxImpulse range valid? (Min<=Max, Max>0, Min>=0)
-            // TODO(P-3): CooldownSeconds >= 0?
-            // TODO(P-4): MinPullDistance >= 0?
-            return false;
+            // v0.1: 런타임 방어 (OnValidate가 있어도 외부 입력을 100% 신뢰하면 안 됨)
+
+            // MaxPullDistance
+            if (def.MaxPullDistance <= 0f) return false;
+
+            // Impulse range
+            if (def.MinImpulse < 0f) return false;
+            if (def.MaxImpulse <= 0f) return false;
+            if (def.MaxImpulse < def.MinImpulse) return false;
+
+            // Cooldown
+            if (def.CooldownSeconds < 0f) return false;
+
+            // MinPullDistance
+            if (def.MinPullDistance < 0f) return false;
+
+            return true;
         }
         
         // 공용 Fail 처리
