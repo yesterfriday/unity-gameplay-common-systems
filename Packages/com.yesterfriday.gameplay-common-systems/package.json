@@ -33,6 +33,11 @@
       "displayName": "Slingshot2D Demo",
       "description": "Demo scene to validate Slingshot2D v0.1 (Begin/Update/End pull, Launch, FailReason, trajectory preview).",
       "path": "Samples~/Slingshot2D_Demo"
+    },
+    {
+      "displayName": "Common",
+      "description": "Shared utilities and lightweight glue used by all Samples (bootstrap, logging, health, waves).",
+      "path": "Samples~/Common"
     }
   ]
 }
