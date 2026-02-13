@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 namespace Yesterfriday.GameplayCommonSystems.SamplesCommon.Gameplay.Loot
 {
@@ -12,6 +13,8 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesCommon.Gameplay.Loot
         [SerializeField] private Transform _dropOrigin;
         [SerializeField] private int _dropCount = 1;
         [SerializeField] private float _scatterRadius = 0.4f;
+        
+        public event Action<LootPickup2D> PickupSpawned;
 
         public bool TryDrop()
         {
@@ -43,6 +46,9 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesCommon.Gameplay.Loot
 
                 var pickup = Instantiate(_pickupPrefab, pos, Quaternion.identity);
                 pickup.SetLoot(loot);
+                
+                PickupSpawned?.Invoke(pickup);
+                
                 anyDropped = true;
             }
 
