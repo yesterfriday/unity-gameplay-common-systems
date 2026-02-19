@@ -1,6 +1,7 @@
 using UnityEngine;
 using Yesterfriday.GameplayCommonSystems.SamplesCommon.Gameplay;
 using Yesterfriday.GameplayCommonSystems.MonsterSpawner;
+using Yesterfriday.GameplayCommonSystems.Samples.GameA.Targeting;
 
 namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
 {
@@ -11,7 +12,8 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
         [SerializeField] private MonsterSpawner.MonsterSpawner _monsterSpawner;
         [SerializeField] private EnemyRegistry _enemyRegistry;
         [SerializeField] private WaveEndCondition_EliminateAll _waveEndCondition;
-
+        [SerializeField] private TargetingController2D _targeting;
+        
         [Header("Debug Spawn")]
         [SerializeField] private MonsterDefinition _debugMonster;
         [SerializeField] private KeyCode _spawnKey = KeyCode.F1;
@@ -19,19 +21,34 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
         private void Awake()
         {
             if (_enemyRegistry != null)
+            {
                 _enemyRegistry.AliveCountChanged += OnAliveCountChanged;
+            }
 
             if (_waveEndCondition != null)
+            {
                 _waveEndCondition.WaveCleared += OnWaveCleared;
+            }
         }
 
         private void OnDestroy()
         {
             if (_enemyRegistry != null)
+            {
                 _enemyRegistry.AliveCountChanged -= OnAliveCountChanged;
+            }
 
             if (_waveEndCondition != null)
+            {
                 _waveEndCondition.WaveCleared -= OnWaveCleared;
+            }
+            
+            if (_targeting == null)
+            {
+                return;
+            }
+            _targeting.TargetChanged -= OnTargetChanged;
+            _targeting.TargetingModeChanged -= enabled => Debug.Log($"Targeting: {enabled}");
         }
 
         private void Start()
@@ -44,13 +61,26 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
                 Debug.Log("[GameA] WaveEndCondition armed.", this);
             }
 
-            if (_monsterSpawner == null) Debug.LogWarning("[GameA] Missing MonsterSpawner ref.", this);
-            if (_debugMonster == null) Debug.LogWarning("[GameA] Missing Debug MonsterDefinition ref.", this);
+            if (_monsterSpawner == null)
+            {
+                Debug.LogWarning("[GameA] Missing MonsterSpawner ref.", this);
+            }
+            if (_debugMonster == null)
+            {
+                Debug.LogWarning("[GameA] Missing Debug MonsterDefinition ref.", this);
+            }
+            
+            _targeting.BeginTargeting();
+            _targeting.TargetChanged += OnTargetChanged;
+            _targeting.TargetingModeChanged += enabled => Debug.Log($"Targeting: {enabled}");
         }
 
         private void Update()
         {
-            if (!Input.GetKeyDown(_spawnKey)) return;
+            if (!Input.GetKeyDown(_spawnKey))
+            {
+                return;
+            }
 
             if (_monsterSpawner == null || _debugMonster == null)
             {
@@ -70,6 +100,11 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
         private void OnWaveCleared()
         {
             Debug.Log("[GameA] WaveCleared.", this);
+        }
+        
+        private void OnTargetChanged(Targetable2D t)
+        {
+            Debug.Log(t != null ? $"Target = {t.name}" : "Target = None");
         }
     }
 }
