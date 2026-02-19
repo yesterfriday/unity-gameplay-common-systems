@@ -32,6 +32,9 @@ namespace Yesterfriday.GameplayCommonSystems.MonsterSpawner
         // Public API (v0.1)
         public bool TrySpawn(MonsterDefinition def, out GameObject instance)
         {
+            // TrySpawn 시작 부분에 임시
+            Debug.Log($"[MonsterSpawner] TrySpawn called. alive={_alive.Count}/{_maxAlive} time={Time.time:F2} next={_nextSpawnTime:F2}");
+            
             instance = null;
 
             if (!CanSpawnCommon(def))
