@@ -35,9 +35,14 @@
       "path": "Samples~/Slingshot2D_Demo"
     },
     {
-      "displayName": "Common",
-      "description": "Shared utilities and lightweight glue used by all Samples (bootstrap, logging, health, waves).",
-      "path": "Samples~/Common"
+      "displayName": "C2 Verification",
+      "description": "PlayMode verification scene for C2 (Registry/WaveClear/Loot2D).",
+      "path": "Samples~/Common/Verification/C2"
+    },
+    {
+      "displayName": "GameA - Card Tactics Arena (WIP)",
+      "description": "1-scene MVP loop: wave -> click targeting -> cards -> loot -> inventory.",
+      "path": "Samples~/GameA"
     }
   ]
 }
