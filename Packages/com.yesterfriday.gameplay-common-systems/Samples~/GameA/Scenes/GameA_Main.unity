@@ -597,6 +597,9 @@ MonoBehaviour:
   _targeting: {fileID: 1957602531}
   _debugMonster: {fileID: 11400000, guid: 6444a4faa13d4ff42bfae8dac0d4bdd8, type: 2}
   _spawnKey: 282
+  _startWaveKey: 283
+  _autoStartWaveOnPlay: 1
+  _autoStartNextWaveOnEnd: 1
 --- !u!1 &775887569
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +694,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &870496683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870496684}
+  - component: {fileID: 870496685}
+  m_Layer: 0
+  m_Name: InventoryCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870496684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870496683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1754077155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870496685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870496683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc9ad165dbe9694cb9aa24b7aab4b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 0
 --- !u!1 &1115591966
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +770,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 117551944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1195983572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195983573}
+  - component: {fileID: 1195983574}
+  m_Layer: 0
+  m_Name: GameAWaveRewardBridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195983573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195983572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1754077155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195983574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195983572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f41a817c81246329c74f1181bb47a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endCondition: {fileID: 497186159}
+  _waveController: {fileID: 1646004801}
+  _lootDropper: {fileID: 1606462739}
+  _inventory: {fileID: 870496685}
 --- !u!1 &1389774465
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,8 +893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa91ed5a7c453041b5bd712b65ac4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lootTable: {fileID: 0}
-  _pickupPrefab: {fileID: 0}
+  _lootTable: {fileID: 11400000, guid: a40418cdadbaa1f4a94550daa2359c58, type: 2}
+  _pickupPrefab: {fileID: 356691800307267250, guid: 44ffbacec40550c428de55405e542f68, type: 3}
   _dropOrigin: {fileID: 0}
   _dropCount: 1
   _scatterRadius: 0.4
@@ -938,6 +1034,8 @@ Transform:
   - {fileID: 1896094099}
   - {fileID: 1957602530}
   - {fileID: 442490583}
+  - {fileID: 1195983573}
+  - {fileID: 870496684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873226174
