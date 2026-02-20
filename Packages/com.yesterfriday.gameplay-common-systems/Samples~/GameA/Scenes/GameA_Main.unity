@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 870496684}
   - component: {fileID: 870496685}
   m_Layer: 0
-  m_Name: InventoryCounter
+  m_Name: GameAInventoryCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 1977960839}
   - component: {fileID: 1977960838}
   m_Layer: 3
-  m_Name: Randerer
+  m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
