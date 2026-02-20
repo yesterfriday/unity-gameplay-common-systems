@@ -87,7 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4581401269401578696}
   - component: {fileID: 4602241157934757901}
-  - component: {fileID: 8996687476224181301}
+  - component: {fileID: 5112408824415729714}
+  - component: {fileID: 5436247489058312887}
   m_Layer: 6
   m_Name: '@Monster'
   m_TagString: Untagged
@@ -140,7 +141,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8996687476224181301
+--- !u!114 &5112408824415729714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,10 +150,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2875490668267415297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 773554480dee8b348ac2c893ecef45ca, type: 3}
+  m_Script: {fileID: 11500000, guid: a268589ea553b5b4eb0ea5c185d90091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _root: {fileID: 0}
+  _primaryCollider: {fileID: 1846399573548659925}
+--- !u!114 &5436247489058312887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875490668267415297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfbbd37790722a488b7d53b8b3acb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _max: 10
 --- !u!1 &7602685465616580201
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599950328196614613}
-  - component: {fileID: 911366441816916215}
+  - component: {fileID: 2389334441546362300}
   m_Layer: 6
   m_Name: EnemyAutoRegister2D
   m_TagString: Untagged
@@ -185,7 +199,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4581401269401578696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &911366441816916215
+--- !u!114 &2389334441546362300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7602685465616580201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa14f19ced4f1d94cb231d4088abd37e, type: 3}
+  m_Script: {fileID: 11500000, guid: b780ff747a155af429bb7714425483ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideRegistry: {fileID: 0}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7788d3ca42f1104390a24a8a0c45e2b, type: 3}
   m_Name: MonsterDefinition
   m_EditorClassIdentifier: 
-  _id: ms_01
-  _displayName: Ms_01
-  _prefab: {fileID: 2875490668267415297, guid: 1a668f993b32eff4eade6eb50e99d702, type: 3}
+  _id: ms_001
+  _displayName: Ms_001
+  _prefab: {fileID: 2875490668267415297, guid: 7c36aaa05af34ca47be241503ef374c6, type: 3}
