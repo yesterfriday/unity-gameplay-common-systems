@@ -17,7 +17,10 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
         [Header("Debug Spawn")]
         [SerializeField] private MonsterDefinition _debugMonster;
         [SerializeField] private KeyCode _spawnKey = KeyCode.F1;
-
+        [SerializeField] private KeyCode _startWaveKey = KeyCode.F2;
+        [SerializeField] private bool _autoStartWaveOnPlay = true;
+        [SerializeField] private bool _autoStartNextWaveOnEnd = true;
+        
         private void Awake()
         {
             if (_enemyRegistry != null)
@@ -65,9 +68,16 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
             {
                 Debug.LogWarning("[GameA] Missing MonsterSpawner ref.", this);
             }
+            
             if (_debugMonster == null)
             {
                 Debug.LogWarning("[GameA] Missing Debug MonsterDefinition ref.", this);
+            }
+            
+            if (_autoStartWaveOnPlay && _waveController != null)
+            {
+                bool started = _waveController.TryStartNextWave();
+                Debug.Log($"[GameA] TryStartNextWave (auto) -> {started}", this);
             }
             
             _targeting.BeginTargeting();
@@ -77,6 +87,26 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
 
         private void Update()
         {
+            if (Input.GetKeyDown(_startWaveKey))
+            {
+                if (_waveController == null)
+                {
+                    Debug.LogWarning("[GameA] StartWave skipped: missing WaveController ref.", this);
+                }
+                else
+                {
+                    bool started = _waveController.TryStartNextWave();
+                    Debug.Log($"[GameA] TryStartNextWave (key={_startWaveKey}) -> {started}", this);
+
+                    // 웨이브마다 EndCondition 재무장(안전)
+                    if (started && _waveEndCondition != null)
+                    {
+                        _waveEndCondition.Arm();
+                        Debug.Log("[GameA] WaveEndCondition armed (on wave start).", this);
+                    }
+                }
+            }
+            
             if (!Input.GetKeyDown(_spawnKey))
             {
                 return;
@@ -100,6 +130,30 @@ namespace Yesterfriday.GameplayCommonSystems.SamplesGameA
         private void OnWaveCleared()
         {
             Debug.Log("[GameA] WaveCleared.", this);
+            
+            if (_waveController != null && _waveController.IsRunning)
+            {
+                bool ended = _waveController.TryEndWave();
+                Debug.Log($"[GameA] TryEndWave -> {ended}", this);
+            }
+
+            if (_waveEndCondition != null)
+            {
+                _waveEndCondition.Disarm();
+                Debug.Log("[GameA] WaveEndCondition disarmed.", this);
+            }
+
+            if (_autoStartNextWaveOnEnd && _waveController != null)
+            {
+                bool started = _waveController.TryStartNextWave();
+                Debug.Log($"[GameA] TryStartNextWave (auto-next) -> {started}", this);
+
+                if (started && _waveEndCondition != null)
+                {
+                    _waveEndCondition.Arm();
+                    Debug.Log("[GameA] WaveEndCondition armed (auto-next).", this);
+                }
+            }
         }
         
         private void OnTargetChanged(Targetable2D t)

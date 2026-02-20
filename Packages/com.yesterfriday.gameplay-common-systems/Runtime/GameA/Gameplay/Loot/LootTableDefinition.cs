@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Yesterfriday.GameplayCommonSystems.SamplesCommon.Gameplay.Loot
 {
-    [CreateAssetMenu(menuName = "Yesterfriday/Samples/Loot Table Definition", fileName = "LootTableDefinition")]
+    [CreateAssetMenu(menuName = "Common Systems/Samples/Loot Table Definition", fileName = "LootTableDefinition")]
     public sealed class LootTableDefinition : ScriptableObject
     {
         [SerializeField] private List<LootEntry> _entries = new();
