@@ -96,7 +96,7 @@
     "runtime_only_modules": true,
     "samples_importable": true,
     "no_asset_samples_commits": true,
-    "tests": "v0.1은 최소 수동 테스트 중심, v0.2+에서 EditMode/PlayMode 자동 테스트 확장"
+    "tests": "v0.1은 최소 수동 테스트 중심, v0.2+에서 EditMode/PlayMode 자동 테스트 확장."
   },
   "glossary": {
     "SoT": "Single Source of Truth. 코드/구현의 단일 진실 소스.",
