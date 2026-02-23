@@ -1,0 +1,106 @@
+﻿{
+  "project_name": "Gameplay Common Systems Toolkit (UPM)",
+  "tech_stack": {
+    "engine": "Unity",
+    "unity_version": "2022.3.62f3",
+    "language": "C#",
+    "distribution": "Unity Package Manager (UPM)"
+  },
+  "target_platform": {
+    "primary": "PC",
+    "notes": "Unity 2022.3 LTS 기반. Sample'은 2D 중심. 확장 시 3D도 고려."
+  },
+  "conventions": {
+    "namespace_root": "Yesterfriday.GameplayCommonSystems",
+    "try_api_rule": "Try* API의 bool은 '상태 변화가 실제로 적용됐는지(부분 성공 포함)' 기준",
+    "so_definition": "ScriptableObject Definition은 [SerializeField] private + public read-only, OnValidate에서 trim/warn/clamp",
+    "folder_layout": "Runtime/<Module>/Definitions/(Core), Samples~/, Documentation~/",
+    "versioning": "v0.1 최소 기능, v0.2+ 확장 지향",
+    "samples_policy": "코드는 Packages/.../Samples~에서만 작성/수정. Assets/Samples/...는 Import 산출물(복제본)이라 커밋/수정 금지"
+  },
+  "modules": [
+    {
+      "name": "Inventory",
+      "version": "v0.1",
+      "status": "implemented/iterating",
+      "highlights": [
+        "Fixed grid slots (6x6 in v0.1; variable planned for v0.2)",
+        "Stacking with per-item max stack",
+        "TryAdd/TryRemove partial success rules",
+        "OnInventoryChanged(changedIndices) event contract"
+      ]
+    },
+    {
+      "name": "Cards",
+      "version": "v0.1",
+      "status": "implemented/iterating",
+      "highlights": [
+        "Model-first: deck/hand/discard + shuffle",
+        "TryDraw/TryDiscard 등 Try* 규칙 적용",
+        "SerializeField rename migration 적용"
+      ]
+    },
+    {
+      "name": "MonsterSpawner",
+      "version": "v0.1",
+      "status": "implemented",
+      "highlights": [
+        "Spawn/Despawn 이벤트 기반 구조",
+        "Samples/Demo로 재현성 검증 완료"
+      ]
+    },
+    {
+      "name": "Slingshot",
+      "version": "v0.1",
+      "status": "implemented",
+      "highlights": [
+        "Slingshot2D Demo 씬/입력 브릿지/UI/Visualizer 제공",
+        "Documentation~/Slingshot/README.md 보강(재현 방법/구성)"
+      ]
+    },
+    {
+      "name": "SamplesCommon",
+      "version": "v0.1",
+      "status": "implemented/iterating",
+      "highlights": [
+        "Samples~/Common에 bootstrap/log/health/waves/loot 등 공통 glue/utility 구성",
+        "WaveCleared(EliminateAll), Loot2D(테이블/드랍/픽업) 최소 테스트 통과"
+      ]
+    },
+    {
+      "name": "GameA",
+      "version": "v0.1",
+      "status": "in_progress (P0-1~P0-6 done; P1 next)",
+      "highlights": [
+        "GameA를 package.json Samples로 등록하여 Import 가능하게 구성(Import 재현성 경로 확립)",
+        "Import 시 Common 타입 누락 문제 해결: GameA 단독 Import를 위해 필요한 공통 코드 번들링/구성 정리",
+        "재현성(Import 100%) 강화를 위해 GameA 런타임 스크립트 전부를 Runtime/GameA로 이동, Samples~/GameA는 데이터(씬/프리팹/리소스/README)만 유지(스크립트 삭제)",
+        "P0-3 클릭 타겟팅(2D) 완료: TargetingController2D/Targetable2D 기반 클릭 선택 구현/검증",
+        "타겟팅 UX 규칙 확정: Esc=선택 클리어, 우클릭=타겟팅 모드 종료(재진입 가능)",
+        "P0-4 카드 루프 완료: GameACardPlayController 기반 Strike(타겟 필요 데미지) / Heal(타겟 없이 즉시 플레이어 회복) 검증",
+        "P0-5 웨이브 루프 완료: WaveCleared → LootDropper.TryDrop → LootPickup2D(LootPicked) → GameAInventoryCounter 반영, 반복 웨이브에서도 재현",
+        "LootTableDefinition 엔트리/가중치(Weight) 세팅으로 TryDrop 성공 조건을 명확화",
+        "LootPickup2D 프리팹 세팅(Trigger/PlayerLayerMask/Rigidbody2D 조건)으로 픽업 이벤트 재현성 확보",
+        "EnemyDeathHandler2D 추가: Health 0 시 Enemy 루트 Disable 처리로 Registry 0 도달 및 WaveCleared 발화 안정화",
+        "Health 로직/이벤트 흐름 정리: 데미지/힐 적용 및 변경 이벤트가 카드/웨이브 루프와 일치하도록 안정화",
+        "GameAFlowCoordinator에서 TryStartNextWave 호출 누락을 보완하여 웨이브가 실제로 시작/반복되는 흐름을 갖춤",
+        "샘플 데이터 업데이트: @Monster 프리팹과 GameA_Main 씬 wiring(컴포넌트/참조 연결) 완료",
+        "최소 테스트 통과: 웨이브 클리어, 드랍 생성, 픽업, 인벤 반영, 반복 웨이브 재현",
+        "P0-6 문서/시연성 완료: Samples~/GameA/README.md에 Import 절차 + 10초 재현(Quick Start) + 필수 세팅(LootTableDefinition Entries/Weight, LootPickup Trigger/Rigidbody2D/Collider2D, Layer/LayerMask) 정리",
+        "README에 GameA_Main Hierarchy(@System/@Player/@UI/@SpawnPoints/MainCamera) 기반 Wiring 체크리스트 및 Inspector 필수 참조(필드 라벨→연결 대상) 고정",
+        "Samples~/GameA/Scripts/** + .meta 삭제로 Runtime/GameA 단일 SoT 유지 및 Import/컴파일 리스크 제거"
+      ]
+    }
+  ],
+  "constraints": {
+    "runtime_only_modules": true,
+    "samples_importable": true,
+    "no_asset_samples_commits": true,
+    "tests": "v0.1은 최소 수동 테스트 중심, v0.2+에서 EditMode/PlayMode 자동 테스트 확장"
+  },
+  "glossary": {
+    "SoT": "Single Source of Truth. 코드/구현의 단일 진실 소스.",
+    "Samples~": "UPM 패키지 내 Import 가능한 샘플 루트(씬/프리팹/리소스/README 중심).",
+    "Documentation~": "패키지 문서 루트(README/가이드/설계 의도)."
+  }
+}
